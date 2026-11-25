@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "YuE2 Studio",
+  "productName": "WMK Music Studio",
   "version": "5.0.0",
   "identifier": "com.timoncool.yue2-studio",
   "build": {
@@ -15,7 +15,7 @@
         "label": "main",
         "dragDropEnabled": false,
         "create": false,
-        "title": "YuE2 Studio",
+        "title": "WMK Music Studio",
         "width": 1440,
         "height": 960,
         "minWidth": 1024,
@@ -29,7 +29,11 @@
     "withGlobalTauri": true
   },
   "bundle": {
-    "linux": { "appimage": { "bundleMediaFramework": true } },
+    "linux": {
+      "appimage": {
+        "bundleMediaFramework": true
+      }
+    },
     "active": true,
     "targets": [
       "nsis"
