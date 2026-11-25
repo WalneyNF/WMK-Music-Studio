@@ -172,7 +172,7 @@ function NativeUnavailableView({ title, detail }: { title: string; detail: strin
   return (
     <div className="flex h-full min-h-0 flex-1 items-center justify-center overflow-y-auto bg-white px-6 py-10 dark:bg-suno">
       <section className="w-full max-w-xl rounded-2xl border border-amber-500/30 bg-amber-500/5 p-6 text-center shadow-xs">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-600 dark:text-amber-400">YuE2 Studio</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-600 dark:text-amber-400">WMK Music Studio</p>
         <h1 className="mt-2 text-xl font-bold text-zinc-950 dark:text-white">{title}</h1>
         <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{detail}</p>
       </section>
