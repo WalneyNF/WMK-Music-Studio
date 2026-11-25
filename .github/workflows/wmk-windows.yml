@@ -1,0 +1,51 @@
+name: WMK Windows - Testes e Build
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            app/package-lock.json
+            desktop/package-lock.json
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            .
+            desktop/src-tauri
+      - name: Instalar frontend
+        run: npm ci --prefix app
+      - name: Testar frontend
+        run: npm --prefix app test
+      - name: Compilar frontend
+        run: npm --prefix app run build
+      - name: Testar backend
+        run: cargo test --locked -p music-server
+      - name: Compilar servidor independente
+        run: cargo build --release --locked -p music-server
+      - name: Instalar Tauri
+        run: npm ci --prefix desktop
+      - name: Compilar desktop sem assinatura
+        run: npm --prefix desktop run build
+      - name: Publicar executaveis e frontend
+        uses: actions/upload-artifact@v4
+        with:
+          name: WMK-Music-Studio-Windows-x64
+          if-no-files-found: error
+          path: |
+            desktop/src-tauri/target/release/YuE2-Studio.exe
+            target/release/music-server.exe
+            app/dist/
+            LICENSE
